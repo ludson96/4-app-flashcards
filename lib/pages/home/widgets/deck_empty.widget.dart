@@ -1,3 +1,4 @@
+import 'package:app_flashcards/pages/home/widgets/add_deck.widget.dart';
 import 'package:flutter/material.dart';
 
 class DeckEmpty extends StatelessWidget {
@@ -29,7 +30,12 @@ class DeckEmpty extends StatelessWidget {
                     borderRadius: BorderRadius.circular(1),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => AddDeck()),
+                  );
+                },
                 child: Text(
                   "Adicionar deck",
                   style: TextStyle(color: Colors.black),
