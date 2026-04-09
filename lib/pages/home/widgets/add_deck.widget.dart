@@ -1,14 +1,21 @@
+import 'package:app_flashcards/pages/home/store/home.store.dart';
 import 'package:flutter/material.dart';
 
 class AddDeck extends StatelessWidget {
   final titleDeckController = TextEditingController();
+  final HomeStore homeStore;
 
-  AddDeck({super.key});
+  AddDeck({super.key, required this.homeStore});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Novo deck"), centerTitle: true),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text("Novo deck"),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -32,7 +39,10 @@ class AddDeck extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                homeStore.addDeck(title: titleDeckController.text);
+                Navigator.of(context).pop();
+              },
               style: FilledButton.styleFrom(
                 backgroundColor: Colors.black,
                 minimumSize: const Size(150, 50),

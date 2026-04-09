@@ -1,8 +1,11 @@
+import 'package:app_flashcards/pages/home/store/home.store.dart';
 import 'package:app_flashcards/pages/home/widgets/add_deck.widget.dart';
 import 'package:flutter/material.dart';
 
 class DeckEmpty extends StatelessWidget {
-  const DeckEmpty({super.key});
+  final HomeStore homeStore;
+
+  const DeckEmpty({super.key, required this.homeStore});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,9 @@ class DeckEmpty extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => AddDeck()),
+                    MaterialPageRoute(
+                      builder: (_) => AddDeck(homeStore: homeStore),
+                    ),
                   );
                 },
                 child: Text(
