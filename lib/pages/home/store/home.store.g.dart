@@ -42,6 +42,23 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
+  late final _$_HomeStoreActionController = ActionController(
+    name: '_HomeStore',
+    context: context,
+  );
+
+  @override
+  void addDeck({required String title}) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+      name: '_HomeStore.addDeck',
+    );
+    try {
+      return super.addDeck(title: title);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

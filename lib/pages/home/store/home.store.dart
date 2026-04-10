@@ -16,7 +16,11 @@ abstract class _HomeStore with Store {
 
   @action
   void addDeck({required String title}) {
-    final newDeck = Deck(title: title, cardList: []);
+    final newDeck = Deck(
+      id: DateTime.now().millisecond.toString(),
+      title: title,
+      cardList: [],
+    );
     deck.add(newDeck);
   }
 }
