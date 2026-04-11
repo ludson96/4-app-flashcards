@@ -5,7 +5,7 @@ class RemoveDeckService {
 
   RemoveDeckService(this._deckAdapter);
 
-  void call(String id) async {
+  Future<void> call(String id) async {
     return await _deckAdapter.delete(id);
   }
 }
