@@ -3,15 +3,15 @@ import 'package:app_flashcards/pages/home/widgets/deck_empty.widget.dart';
 import 'package:app_flashcards/pages/home/store/home.store.dart';
 import 'package:app_flashcards/pages/home/widgets/list_deck.widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:app_flashcards/injection_container.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final homeStore = GetIt.I<HomeStore>();
+    final homeStore = getIt<HomeStore>();
 
     return Scaffold(
       appBar: AppBar(
@@ -25,14 +25,18 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Observer(
           builder: (_) {
-            return homeStore.deck.isEmpty
+            if (homeStore.isLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            return homeStore.decks.isEmpty
                 ? DeckEmpty(homeStore: homeStore)
                 : ListDeck(homeStore: homeStore);
           },
         ),
       ),
       floatingActionButton: SizedBox(
-        height: 50, // Altere este valor para achatar mais ou menos o botão
+        height: 50,
         child: FloatingActionButton.extended(
           extendedPadding: EdgeInsets.only(right: 20, left: 20),
           onPressed: () {
