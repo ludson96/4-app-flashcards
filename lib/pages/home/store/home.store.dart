@@ -36,8 +36,8 @@ abstract class _HomeStore with Store {
   }
 
   @action
-  Future<void> createDeck(String title) async {
+  Future<void> createDeck({required String title}) async {
     await _repository.createDeck(title.trim());
-    await loadAllDecks(); 
+    await loadAllDecks();
   }
 }

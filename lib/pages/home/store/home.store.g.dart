@@ -58,8 +58,8 @@ mixin _$HomeStore on _HomeStore, Store {
   );
 
   @override
-  Future<void> createDeck(String title) {
-    return _$createDeckAsyncAction.run(() => super.createDeck(title));
+  Future<void> createDeck({required String title}) {
+    return _$createDeckAsyncAction.run(() => super.createDeck(title: title));
   }
 
   @override

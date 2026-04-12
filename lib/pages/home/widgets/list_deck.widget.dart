@@ -17,9 +17,9 @@ class ListDeck extends StatelessWidget {
             child: Observer(
               builder: (context) {
                 return ListView.builder(
-                  itemCount: homeStore.deck.length,
+                  itemCount: homeStore.decks.length,
                   itemBuilder: (context, index) {
-                    final deckItem = homeStore.deck[index];
+                    final deckItem = homeStore.decks[index];
                     return InkWell(
                       onTap: () {
                         // Coloque aqui a ação de navegação ou o que desejar fazer ao clicar

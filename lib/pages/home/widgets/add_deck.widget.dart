@@ -40,7 +40,7 @@ class AddDeck extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                homeStore.addDeck(title: titleDeckController.text);
+                homeStore.createDeck(title: titleDeckController.text);
                 Navigator.of(context).pop();
               },
               style: FilledButton.styleFrom(
