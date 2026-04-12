@@ -40,4 +40,10 @@ abstract class _HomeStore with Store {
     await _repository.createDeck(title.trim());
     await loadAllDecks();
   }
+
+  @action
+  Future<void> removeDeck({required String id}) async {
+    await _repository.removeDeck(id);
+    await loadAllDecks();
+  }
 }

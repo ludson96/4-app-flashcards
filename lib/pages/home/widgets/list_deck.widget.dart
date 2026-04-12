@@ -1,3 +1,4 @@
+import 'package:app_flashcards/models/deck.model.dart';
 import 'package:app_flashcards/pages/home/store/home.store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -6,6 +7,33 @@ class ListDeck extends StatelessWidget {
   final HomeStore homeStore;
 
   const ListDeck({super.key, required this.homeStore});
+
+  void confirmRemoveDeck(BuildContext context, Deck deckItem) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Excluir deck"),
+          content: Text(
+            "Tem certeza que deseja excluir o deck '${deckItem.title}'?",
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(), 
+              child: const Text("Cancelar"),
+            ),
+            TextButton(
+              onPressed: () {
+                homeStore.removeDeck(id: deckItem.id);
+                Navigator.of(context).pop(); 
+              },
+              child: const Text("Excluir", style: TextStyle(color: Colors.red)),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +51,9 @@ class ListDeck extends StatelessWidget {
                     return InkWell(
                       onTap: () {
                         // Coloque aqui a ação de navegação ou o que desejar fazer ao clicar
+                      },
+                      onLongPress: () {
+                        confirmRemoveDeck(context, deckItem);
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 40),
