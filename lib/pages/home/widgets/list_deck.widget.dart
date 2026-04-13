@@ -1,4 +1,5 @@
 import 'package:app_flashcards/models/deck.model.dart';
+import 'package:app_flashcards/pages/card/card.page.dart';
 import 'package:app_flashcards/pages/home/store/home.store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -18,16 +19,23 @@ class ListDeck extends StatelessWidget {
             "Tem certeza que deseja excluir o deck '${deckItem.title}'?",
           ),
           actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(), 
-              child: const Text("Cancelar"),
+            OutlinedButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text(
+                "Cancelar",
+                style: TextStyle(color: Colors.black),
+              ),
             ),
-            TextButton(
+            FilledButton(
               onPressed: () {
                 homeStore.removeDeck(id: deckItem.id);
-                Navigator.of(context).pop(); 
+                Navigator.of(context).pop();
               },
-              child: const Text("Excluir", style: TextStyle(color: Colors.red)),
+              style: FilledButton.styleFrom(backgroundColor: Colors.black),
+              child: const Text(
+                "Excluir",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         );
@@ -50,7 +58,12 @@ class ListDeck extends StatelessWidget {
                     final deckItem = homeStore.decks[index];
                     return InkWell(
                       onTap: () {
-                        // Coloque aqui a ação de navegação ou o que desejar fazer ao clicar
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CardPage(deck: deckItem),
+                          ),
+                        );
                       },
                       onLongPress: () {
                         confirmRemoveDeck(context, deckItem);
