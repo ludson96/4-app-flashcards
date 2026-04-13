@@ -1,4 +1,5 @@
 import 'package:app_flashcards/models/deck.model.dart';
+import 'package:app_flashcards/models/card.model.dart';
 import 'package:hive_ce_flutter/adapters.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -8,6 +9,9 @@ abstract interface class IDeckHiveAdapter {
 
   /// Retorna todos os decks salvas.
   Future<List<Deck>> getAll();
+
+  /// Retorna um deck pelo [id].
+  Future<Deck?> getById(String id);
 
   /// Salva um novo [deck].
   Future<void> save(Deck deck);
@@ -34,6 +38,11 @@ class DeckHiveAdapter implements IDeckHiveAdapter {
       Hive.registerAdapter(DeckAdapter());
     }
 
+    // Registra o adapter do modelo Card (typeId 1)
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(CardAdapter());
+    }
+
     // Abre a caixa de decks
     if (!Hive.isBoxOpen(_boxName)) {
       _box = await Hive.openBox<Deck>(_boxName);
@@ -45,6 +54,11 @@ class DeckHiveAdapter implements IDeckHiveAdapter {
   @override
   Future<List<Deck>> getAll() async {
     return _box.values.toList();
+  }
+
+  @override
+  Future<Deck?> getById(String id) async {
+    return _box.get(id);
   }
 
   @override

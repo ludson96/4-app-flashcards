@@ -15,4 +15,12 @@ class Deck {
   final List<Card> cardList;
 
   Deck({required this.id, required this.title, required this.cardList});
+
+  Deck copyWith({String? id, String? title, List<Card>? cardList}) {
+    return Deck(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      cardList: cardList ?? this.cardList,
+    );
+  }
 }

@@ -1,7 +1,12 @@
+import 'package:app_flashcards/injection_container.dart';
+import 'package:app_flashcards/models/deck.model.dart';
+import 'package:app_flashcards/pages/home/store/home.store.dart';
 import 'package:flutter/material.dart';
 
 class AddCard extends StatefulWidget {
-  const AddCard({super.key});
+  final Deck deck;
+
+  const AddCard({super.key, required this.deck});
 
   @override
   State<AddCard> createState() => _AddCardState();
@@ -11,6 +16,7 @@ class _AddCardState extends State<AddCard> {
   final _formKey = GlobalKey<FormState>();
   final _questionController = TextEditingController();
   final _answerController = TextEditingController();
+  final homeStore = getIt<HomeStore>();
 
   @override
   void dispose() {
@@ -73,6 +79,14 @@ class _AddCardState extends State<AddCard> {
                       // Captura os inputs aqui pois o form foi validado com sucesso!
                       final question = _questionController.text;
                       final answer = _answerController.text;
+
+                      homeStore.addCardToDeck(
+                        deckId: widget.deck.id,
+                        question: question,
+                        answer: answer,
+                      );
+
+                      Navigator.pop(context);
                     }
                   },
                   style: OutlinedButton.styleFrom(

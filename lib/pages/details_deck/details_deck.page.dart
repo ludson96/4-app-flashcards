@@ -1,6 +1,7 @@
 import 'package:app_flashcards/models/deck.model.dart';
 import 'package:app_flashcards/pages/details_deck/widget/add_card.widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class DetailsDeck extends StatelessWidget {
   final Deck deck;
@@ -23,22 +24,26 @@ class DetailsDeck extends StatelessWidget {
         child: Column(
           mainAxisAlignment: .spaceEvenly,
           children: [
-            Column(
-              children: [
-                Center(
-                  child: Text(
-                    deck.title,
-                    style: TextStyle(fontSize: 50, fontWeight: .w500),
-                  ),
-                ),
-                SizedBox(height: 10),
-                Center(
-                  child: Text(
-                    "${deck.cardList.length} cartões",
-                    style: TextStyle(fontSize: 22),
-                  ),
-                ),
-              ],
+            Observer(
+              builder: (context) {
+                return Column(
+                  children: [
+                    Center(
+                      child: Text(
+                        deck.title,
+                        style: TextStyle(fontSize: 50, fontWeight: .w500),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Center(
+                      child: Text(
+                        "${deck.cardList.length} cartões",
+                        style: TextStyle(fontSize: 22),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
             Column(
               children: [
@@ -46,7 +51,9 @@ class DetailsDeck extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AddCard()),
+                      MaterialPageRoute(
+                        builder: (context) => AddCard(deck: deck),
+                      ),
                     );
                   },
                   style: OutlinedButton.styleFrom(

@@ -46,4 +46,31 @@ abstract class _HomeStore with Store {
     await _repository.removeDeck(id);
     await loadAllDecks();
   }
+
+   @action
+  Future<void> addCardToDeck({
+    required String deckId,
+    required String question,
+    required String answer,
+  }) async {
+    try {
+      // Chama o repositório para salvar o card e obter o deck atualizado
+      final updatedDeck = await _repository.addCardToDeck(
+        deckId: deckId,
+        question: question,
+        answer: answer,
+      );
+
+      // Encontra o índice do deck antigo na lista observável
+      final index = decks.indexWhere((d) => d.id == updatedDeck.id);
+
+      // Substitui o objeto antigo pelo novo para que o MobX detecte a mudança
+      if (index != -1) {
+        decks[index] = updatedDeck;
+      }
+    } catch (e) {
+      // TODO: Tratar o erro (ex: mostrar um snackbar)
+      print('Erro ao adicionar cartão: $e');
+    }
+  }
 }

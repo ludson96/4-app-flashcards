@@ -72,6 +72,26 @@ mixin _$HomeStore on _HomeStore, Store {
     return _$removeDeckAsyncAction.run(() => super.removeDeck(id: id));
   }
 
+  late final _$addCardToDeckAsyncAction = AsyncAction(
+    '_HomeStore.addCardToDeck',
+    context: context,
+  );
+
+  @override
+  Future<void> addCardToDeck({
+    required String deckId,
+    required String question,
+    required String answer,
+  }) {
+    return _$addCardToDeckAsyncAction.run(
+      () => super.addCardToDeck(
+        deckId: deckId,
+        question: question,
+        answer: answer,
+      ),
+    );
+  }
+
   @override
   String toString() {
     return '''

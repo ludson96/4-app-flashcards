@@ -16,16 +16,22 @@ class CardAdapter extends TypeAdapter<Card> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Card(question: fields[0] as String, answer: fields[1] as String);
+    return Card(
+      id: fields[0] as String,
+      question: fields[1] as String,
+      answer: fields[2] as String,
+    );
   }
 
   @override
   void write(BinaryWriter writer, Card obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.question)
+      ..write(obj.id)
       ..writeByte(1)
+      ..write(obj.question)
+      ..writeByte(2)
       ..write(obj.answer);
   }
 

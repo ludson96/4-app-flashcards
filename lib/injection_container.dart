@@ -1,5 +1,6 @@
 import 'package:app_flashcards/adapters/deck_hive.adapter.dart';
 import 'package:app_flashcards/repositories/deck.repository.dart';
+import 'package:app_flashcards/services/add_card_to_deck.service.dart';
 import 'package:app_flashcards/services/create_deck.service.dart';
 import 'package:app_flashcards/services/get_deck.service.dart';
 import 'package:app_flashcards/services/remove_deck.service.dart';
@@ -25,12 +26,17 @@ Future<void> initDeckDependencies() async {
     () => RemoveDeckService(getIt()),
   );
 
+  getIt.registerLazySingleton<AddCardToDeckService>(
+    () => AddCardToDeckService(getIt()),
+  );
+
   // Repository
   getIt.registerLazySingleton<DeckRepository>(
     () => DeckRepository(
       getDecks: getIt(),
       createDeck: getIt(),
       removeDeck: getIt(),
+      addCardToDeck: getIt(),
     ),
   );
 
