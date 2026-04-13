@@ -1,4 +1,4 @@
-import 'package:app_flashcards/pages/home/widgets/add_deck.widget.dart';
+import 'package:app_flashcards/pages/add_deck/add_deck.page.dart';
 import 'package:app_flashcards/pages/home/widgets/deck_empty.widget.dart';
 import 'package:app_flashcards/pages/home/store/home.store.dart';
 import 'package:app_flashcards/pages/home/widgets/list_deck.widget.dart';
@@ -53,7 +53,9 @@ class _HomePageState extends State<HomePage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => AddDeck(homeStore: homeStore)),
+              MaterialPageRoute(
+                builder: (_) => AddDeckPage(homeStore: homeStore),
+              ),
             );
           },
           label: Text(

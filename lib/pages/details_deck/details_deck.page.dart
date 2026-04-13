@@ -1,10 +1,11 @@
 import 'package:app_flashcards/models/deck.model.dart';
+import 'package:app_flashcards/pages/details_deck/widget/add_card.widget.dart';
 import 'package:flutter/material.dart';
 
-class CardPage extends StatelessWidget {
+class DetailsDeck extends StatelessWidget {
   final Deck deck;
 
-  const CardPage({super.key, required this.deck});
+  const DetailsDeck({super.key, required this.deck});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,12 @@ class CardPage extends StatelessWidget {
             Column(
               children: [
                 OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AddCard()),
+                    );
+                  },
                   style: OutlinedButton.styleFrom(
                     padding: .symmetric(horizontal: 60, vertical: 12),
                     side: const BorderSide(color: Colors.black),

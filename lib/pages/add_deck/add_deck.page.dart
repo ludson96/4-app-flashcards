@@ -1,11 +1,11 @@
 import 'package:app_flashcards/pages/home/store/home.store.dart';
 import 'package:flutter/material.dart';
 
-class AddDeck extends StatelessWidget {
+class AddDeckPage extends StatelessWidget {
   final titleDeckController = TextEditingController();
   final HomeStore homeStore;
 
-  AddDeck({super.key, required this.homeStore});
+  AddDeckPage({super.key, required this.homeStore});
 
   @override
   Widget build(BuildContext context) {

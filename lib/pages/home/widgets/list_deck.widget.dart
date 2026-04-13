@@ -1,5 +1,5 @@
 import 'package:app_flashcards/models/deck.model.dart';
-import 'package:app_flashcards/pages/card/card.page.dart';
+import 'package:app_flashcards/pages/details_deck/details_deck.page.dart';
 import 'package:app_flashcards/pages/home/store/home.store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -61,7 +61,7 @@ class ListDeck extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => CardPage(deck: deckItem),
+                            builder: (context) => DetailsDeck(deck: deckItem),
                           ),
                         );
                       },

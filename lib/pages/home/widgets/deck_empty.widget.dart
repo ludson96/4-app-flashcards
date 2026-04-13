@@ -1,5 +1,5 @@
 import 'package:app_flashcards/pages/home/store/home.store.dart';
-import 'package:app_flashcards/pages/home/widgets/add_deck.widget.dart';
+import 'package:app_flashcards/pages/add_deck/add_deck.page.dart';
 import 'package:flutter/material.dart';
 
 class DeckEmpty extends StatelessWidget {
@@ -37,7 +37,7 @@ class DeckEmpty extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => AddDeck(homeStore: homeStore),
+                      builder: (_) => AddDeckPage(homeStore: homeStore),
                     ),
                   );
                 },
