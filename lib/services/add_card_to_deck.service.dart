@@ -1,6 +1,6 @@
 // lib/services/add_card_to_deck.service.dart
 import 'package:app_flashcards/adapters/deck_hive.adapter.dart';
-import 'package:app_flashcards/models/card.model.dart';
+import 'package:app_flashcards/models/deck_card.model.dart';
 import 'package:app_flashcards/models/deck.model.dart';
 
 /// Serviço responsável por adicionar um novo cartão a um deck existente.
@@ -22,14 +22,14 @@ class AddCardToDeckService {
     }
 
     // 2. Cria o novo cartão.
-    final newCard = Card(
+    final newCard = DeckCard(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       question: question,
       answer: answer,
     );
 
     // 3. Cria uma nova lista de cartões, mantendo a imutabilidade.
-    final updatedCardList = List<Card>.from(deck.cardList)..add(newCard);
+    final updatedCardList = List<DeckCard>.from(deck.cardList)..add(newCard);
 
     // 4. Cria uma cópia atualizada do deck.
     final updatedDeck = deck.copyWith(cardList: updatedCardList);

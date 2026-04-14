@@ -1,9 +1,9 @@
 import 'package:hive_ce/hive_ce.dart';
 
-part 'card.model.g.dart';
+part 'deck_card.model.g.dart';
 
 @HiveType(typeId: 1)
-class Card {
+class DeckCard {
   @HiveField(0)
   final String id;
 
@@ -13,5 +13,5 @@ class Card {
   @HiveField(2)
   final String answer;
 
-  Card({required this.id, required this.question, required this.answer});
+  DeckCard({required this.id, required this.question, required this.answer});
 }

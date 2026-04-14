@@ -1,5 +1,5 @@
 import 'package:app_flashcards/models/deck.model.dart';
-import 'package:app_flashcards/models/card.model.dart';
+import 'package:app_flashcards/models/deck_card.model.dart';
 import 'package:hive_ce_flutter/adapters.dart';
 import 'package:path_provider/path_provider.dart';
 

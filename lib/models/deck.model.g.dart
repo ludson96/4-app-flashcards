@@ -19,7 +19,7 @@ class DeckAdapter extends TypeAdapter<Deck> {
     return Deck(
       id: fields[0] as String,
       title: fields[1] as String,
-      cardList: (fields[2] as List).cast<Card>(),
+      cardList: (fields[2] as List).cast<DeckCard>(),
     );
   }
 

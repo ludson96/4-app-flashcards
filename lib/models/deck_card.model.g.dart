@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'card.model.dart';
+part of 'deck_card.model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class CardAdapter extends TypeAdapter<Card> {
+class CardAdapter extends TypeAdapter<DeckCard> {
   @override
   final typeId = 1;
 
   @override
-  Card read(BinaryReader reader) {
+  DeckCard read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Card(
+    return DeckCard(
       id: fields[0] as String,
       question: fields[1] as String,
       answer: fields[2] as String,
@@ -24,7 +24,7 @@ class CardAdapter extends TypeAdapter<Card> {
   }
 
   @override
-  void write(BinaryWriter writer, Card obj) {
+  void write(BinaryWriter writer, DeckCard obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)

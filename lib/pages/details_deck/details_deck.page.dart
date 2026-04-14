@@ -2,6 +2,7 @@ import 'package:app_flashcards/injection_container.dart';
 import 'package:app_flashcards/models/deck.model.dart';
 import 'package:app_flashcards/pages/details_deck/widget/add_card.widget.dart';
 import 'package:app_flashcards/pages/home/store/home.store.dart';
+import 'package:app_flashcards/pages/quiz/quiz.page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -77,7 +78,14 @@ class DetailsDeck extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 FilledButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => QuizPage(deck: deck),
+                      ),
+                    );
+                  },
                   style: FilledButton.styleFrom(
                     padding: .symmetric(horizontal: 60, vertical: 12),
                     backgroundColor: Colors.black,
