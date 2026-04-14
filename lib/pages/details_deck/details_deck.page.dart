@@ -1,12 +1,15 @@
+import 'package:app_flashcards/injection_container.dart';
 import 'package:app_flashcards/models/deck.model.dart';
 import 'package:app_flashcards/pages/details_deck/widget/add_card.widget.dart';
+import 'package:app_flashcards/pages/home/store/home.store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class DetailsDeck extends StatelessWidget {
   final Deck deck;
+  final homeStore = getIt<HomeStore>();
 
-  const DetailsDeck({super.key, required this.deck});
+  DetailsDeck({super.key, required this.deck});
 
   @override
   Widget build(BuildContext context) {
@@ -24,26 +27,30 @@ class DetailsDeck extends StatelessWidget {
         child: Column(
           mainAxisAlignment: .spaceEvenly,
           children: [
-            Observer(
-              builder: (context) {
-                return Column(
-                  children: [
-                    Center(
-                      child: Text(
-                        deck.title,
-                        style: TextStyle(fontSize: 50, fontWeight: .w500),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Center(
-                      child: Text(
-                        "${deck.cardList.length} cartões",
+            Column(
+              children: [
+                Center(
+                  child: Text(
+                    deck.title,
+                    style: TextStyle(fontSize: 50, fontWeight: FontWeight.w500),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Center(
+                  child: Observer(
+                    builder: (context) {
+                      final currentDeck = homeStore.decks.firstWhere(
+                        (d) => d.id == deck.id,
+                        orElse: () => deck,
+                      );
+                      return Text(
+                        "${currentDeck.cardList.length} cartões",
                         style: TextStyle(fontSize: 22),
-                      ),
-                    ),
-                  ],
-                );
-              },
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
             Column(
               children: [

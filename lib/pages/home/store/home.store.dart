@@ -47,7 +47,7 @@ abstract class _HomeStore with Store {
     await loadAllDecks();
   }
 
-   @action
+  @action
   Future<void> addCardToDeck({
     required String deckId,
     required String question,
@@ -70,7 +70,6 @@ abstract class _HomeStore with Store {
       }
     } catch (e) {
       // TODO: Tratar o erro (ex: mostrar um snackbar)
-      print('Erro ao adicionar cartão: $e');
     }
   }
 }
