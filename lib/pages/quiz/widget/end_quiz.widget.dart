@@ -20,6 +20,7 @@ class EndQuizz extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextButton(
+              key: Key("btnVoltar"),
               onPressed: () => Navigator.of(context).pop(),
               child: const Text(
                 'Voltar',

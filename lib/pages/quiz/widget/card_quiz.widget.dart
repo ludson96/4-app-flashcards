@@ -86,6 +86,7 @@ class _CardQuizState extends State<CardQuiz> {
                     child: Column(
                       children: [
                         FilledButton(
+                          key: Key("btnAcertei"),
                           onPressed: widget.onCorrect,
                           style: FilledButton.styleFrom(
                             minimumSize: const Size(double.infinity, 50),
@@ -101,6 +102,7 @@ class _CardQuizState extends State<CardQuiz> {
                         ),
                         const SizedBox(height: 20),
                         FilledButton(
+                          key: Key("btnErrei"),
                           onPressed: widget.onWrong,
                           style: FilledButton.styleFrom(
                             minimumSize: const Size(double.infinity, 50),

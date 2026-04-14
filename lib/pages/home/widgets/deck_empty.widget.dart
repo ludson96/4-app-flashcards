@@ -14,7 +14,7 @@ class DeckEmpty extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: Image.asset("assets/images/no_decks.png", width: 300)),
+          Center(child: Image.asset("assets/images/no_decks.png", width: 300, key: Key("image"),)),
           const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.symmetric(
@@ -24,6 +24,7 @@ class DeckEmpty extends StatelessWidget {
               width: double.infinity,
               height: 60,
               child: OutlinedButton(
+                key: Key("btnOutlineAdicionar"),
                 style: OutlinedButton.styleFrom(
                   backgroundColor: Colors.white,
                   side: BorderSide(

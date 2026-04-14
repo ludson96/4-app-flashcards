@@ -47,6 +47,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: SizedBox(
+        key: Key("btnAdicionar"),
         height: 50,
         child: FloatingActionButton.extended(
           extendedPadding: EdgeInsets.only(right: 20, left: 20),

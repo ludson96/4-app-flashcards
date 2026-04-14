@@ -16,6 +16,10 @@ class DetailsDeck extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(
+          key: Key("btnvoltar"),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         backgroundColor: Colors.black,
         iconTheme: const IconThemeData(color: Colors.white),
         title: Text(
@@ -56,6 +60,7 @@ class DetailsDeck extends StatelessWidget {
             Column(
               children: [
                 OutlinedButton(
+                  key: Key("addCard"),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -78,6 +83,7 @@ class DetailsDeck extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 FilledButton(
+                  key: Key("startQuiz"),
                   onPressed: () {
                     final currentDeck = homeStore.decks.firstWhere(
                       (d) => d.id == deck.id,

@@ -1,11 +1,23 @@
 import 'package:app_flashcards/pages/home/store/home.store.dart';
 import 'package:flutter/material.dart';
 
-class AddDeckPage extends StatelessWidget {
-  final titleDeckController = TextEditingController();
+class AddDeckPage extends StatefulWidget {
   final HomeStore homeStore;
 
-  AddDeckPage({super.key, required this.homeStore});
+  const AddDeckPage({super.key, required this.homeStore});
+
+  @override
+  State<AddDeckPage> createState() => _AddDeckPageState();
+}
+
+class _AddDeckPageState extends State<AddDeckPage> {
+  final titleDeckController = TextEditingController();
+
+  @override
+  void dispose() {
+    titleDeckController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +40,7 @@ class AddDeckPage extends StatelessWidget {
               style: TextStyle(fontSize: 50, fontWeight: .w500),
             ),
             TextFormField(
+              key: Key("tituloDeck"),
               controller: titleDeckController,
               decoration: const InputDecoration(
                 labelText: 'Título do deck',
@@ -39,8 +52,9 @@ class AddDeckPage extends StatelessWidget {
               ),
             ),
             ElevatedButton(
+              key: Key("btnAdicionarDeck"),
               onPressed: () {
-                homeStore.createDeck(title: titleDeckController.text);
+                widget.homeStore.createDeck(title: titleDeckController.text);
                 Navigator.of(context).pop();
               },
               style: FilledButton.styleFrom(

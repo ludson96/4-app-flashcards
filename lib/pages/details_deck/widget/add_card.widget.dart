@@ -38,6 +38,7 @@ class _AddCardState extends State<AddCard> {
               spacing: 50,
               children: [
                 TextFormField(
+                  key: Key("inputPergunta"),
                   controller: _questionController,
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
@@ -55,6 +56,7 @@ class _AddCardState extends State<AddCard> {
                   ),
                 ),
                 TextFormField(
+                  key: Key("inputResposta"),
                   controller: _answerController,
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
@@ -74,6 +76,7 @@ class _AddCardState extends State<AddCard> {
                   ),
                 ),
                 OutlinedButton(
+                  key: Key("addCardQuestion"),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       // Captura os inputs aqui pois o form foi validado com sucesso!
