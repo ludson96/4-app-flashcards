@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 class CardQuiz extends StatefulWidget {
   final DeckCard deckCard;
   final String progressText;
-  final VoidCallback onAnswer;
+  final VoidCallback onCorrect;
+  final VoidCallback onWrong;
 
   const CardQuiz({
     super.key,
     required this.deckCard,
     required this.progressText,
-    required this.onAnswer,
+    required this.onCorrect,
+    required this.onWrong,
   });
 
   @override
@@ -84,7 +86,7 @@ class _CardQuizState extends State<CardQuiz> {
                     child: Column(
                       children: [
                         FilledButton(
-                          onPressed: widget.onAnswer,
+                          onPressed: widget.onCorrect,
                           style: FilledButton.styleFrom(
                             minimumSize: const Size(double.infinity, 50),
                             backgroundColor: Colors.green,
@@ -99,7 +101,7 @@ class _CardQuizState extends State<CardQuiz> {
                         ),
                         const SizedBox(height: 20),
                         FilledButton(
-                          onPressed: widget.onAnswer,
+                          onPressed: widget.onWrong,
                           style: FilledButton.styleFrom(
                             minimumSize: const Size(double.infinity, 50),
                             backgroundColor: Colors.red,

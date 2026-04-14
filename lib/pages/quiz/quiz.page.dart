@@ -13,18 +13,62 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   int _currentIndex = 0;
+  int _score = 0;
 
-  void _nextCard() {
+  void _answerQuestion(bool correct) {
+    if (correct) {
+      _score++;
+    }
+
     if (_currentIndex < widget.deck.cardList.length - 1) {
       setState(() {
         _currentIndex++;
       });
     } else {
       // Fim do quiz
-      Navigator.of(context).pop();
-      ScaffoldMessenger.of(
+      Navigator.pushReplacement(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Você concluiu este deck!')));
+        MaterialPageRoute(
+          builder: (context) => Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.black,
+              iconTheme: const IconThemeData(color: Colors.white),
+              title: const Text(
+                "Resultado",
+                style: TextStyle(color: Colors.white),
+              ),
+              centerTitle: true,
+            ),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'O quiz acabou.\nVocê fez $_score ponto(s)',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 24),
+                  ),
+                  const SizedBox(height: 20),
+                  FilledButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    style: FilledButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 40,
+                        vertical: 15,
+                      ),
+                    ),
+                    child: const Text(
+                      'Voltar',
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
     }
   }
 
@@ -47,7 +91,8 @@ class _QuizPageState extends State<QuizPage> {
           : CardQuiz(
               deckCard: cardList[_currentIndex],
               progressText: "${_currentIndex + 1}/${cardList.length}",
-              onAnswer: _nextCard,
+              onCorrect: () => _answerQuestion(true),
+              onWrong: () => _answerQuestion(false),
             ),
     );
   }

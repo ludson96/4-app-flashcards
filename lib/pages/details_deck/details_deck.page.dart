@@ -79,10 +79,14 @@ class DetailsDeck extends StatelessWidget {
                 SizedBox(height: 20),
                 FilledButton(
                   onPressed: () {
+                    final currentDeck = homeStore.decks.firstWhere(
+                      (d) => d.id == deck.id,
+                      orElse: () => deck,
+                    );
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => QuizPage(deck: deck),
+                        builder: (context) => QuizPage(deck: currentDeck),
                       ),
                     );
                   },
