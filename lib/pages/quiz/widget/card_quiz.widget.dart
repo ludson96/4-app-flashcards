@@ -82,7 +82,7 @@ class _CardQuizState extends State<CardQuiz> {
                     ],
                   ),
                   FractionallySizedBox(
-                    widthFactor: 0.6,
+                    widthFactor: 0.55,
                     child: Column(
                       children: [
                         FilledButton(
