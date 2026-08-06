@@ -9,6 +9,8 @@ import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
 
+// O coração da Injeção de Dependências (Dependency Injection) do projeto, utilizando o pacote get_it. Ele atua no padrão Service Locator, sendo o lugar central onde configura e instrui o aplicativo sobre como construir as diversas partes que o compõem.
+
 Future<void> initDeckDependencies() async {
   // Inicializa o Hive e abre a caixa de decks
   final deckAdapter = DeckHiveAdapter();

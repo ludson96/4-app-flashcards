@@ -10,7 +10,7 @@ class AddCardToDeckService {
   AddCardToDeckService(this._deckAdapter);
 
   /// Adiciona um novo cartão com [question] e [answer] ao deck com [deckId].
-  Future<Deck> call({
+  Future<Deck?> call({
     required String deckId,
     required String question,
     required String answer,
@@ -18,7 +18,7 @@ class AddCardToDeckService {
     // 1. Busca o deck existente pelo ID.
     final deck = await _deckAdapter.getById(deckId);
     if (deck == null) {
-      throw Exception('Deck com id $deckId não encontrado');
+      return null;
     }
 
     // 2. Cria o novo cartão.

@@ -42,6 +42,24 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
+  late final _$errorMessageAtom = Atom(
+    name: '_HomeStore.errorMessage',
+    context: context,
+  );
+
+  @override
+  String? get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String? value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
+  }
+
   late final _$loadAllDecksAsyncAction = AsyncAction(
     '_HomeStore.loadAllDecks',
     context: context,
@@ -78,7 +96,7 @@ mixin _$HomeStore on _HomeStore, Store {
   );
 
   @override
-  Future<void> addCardToDeck({
+  Future<bool> addCardToDeck({
     required String deckId,
     required String question,
     required String answer,
@@ -95,7 +113,7 @@ mixin _$HomeStore on _HomeStore, Store {
   @override
   String toString() {
     return '''
-
+errorMessage: ${errorMessage}
     ''';
   }
 }

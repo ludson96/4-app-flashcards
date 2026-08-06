@@ -27,7 +27,7 @@ class DeckRepository {
   Future<Deck> createDeck(String title) => _createDeckService(title);
 
   /// Adiciona um novo cartão a um deck.
-  Future<Deck> addCardToDeck({
+  Future<Deck?> addCardToDeck({
     required String deckId,
     required String question,
     required String answer,

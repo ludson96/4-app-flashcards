@@ -6,7 +6,7 @@ part of 'deck_card.model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class CardAdapter extends TypeAdapter<DeckCard> {
+class DeckCardAdapter extends TypeAdapter<DeckCard> {
   @override
   final typeId = 1;
 
@@ -41,7 +41,7 @@ class CardAdapter extends TypeAdapter<DeckCard> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CardAdapter &&
+      other is DeckCardAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

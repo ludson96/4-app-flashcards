@@ -21,6 +21,9 @@ abstract class _HomeStore with Store {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  @observable
+  String? errorMessage;
+
   @action
   Future<void> loadAllDecks() async {
     _isLoading = true;
@@ -48,18 +51,26 @@ abstract class _HomeStore with Store {
   }
 
   @action
-  Future<void> addCardToDeck({
+  Future<bool> addCardToDeck({
     required String deckId,
     required String question,
     required String answer,
   }) async {
+    errorMessage = null;
     try {
       // Chama o repositório para salvar o card e obter o deck atualizado
       final updatedDeck = await _repository.addCardToDeck(
+        // Alterado para retornar Deck?
         deckId: deckId,
         question: question,
         answer: answer,
       );
+
+      if (updatedDeck == null) {
+        errorMessage =
+            'Não foi possível adicionar o card. Deck não encontrado.';
+        return false;
+      }
 
       // Encontra o índice do deck antigo na lista observável
       final index = decks.indexWhere((d) => d.id == updatedDeck.id);
@@ -67,9 +78,12 @@ abstract class _HomeStore with Store {
       // Substitui o objeto antigo pelo novo para que o MobX detecte a mudança
       if (index != -1) {
         decks[index] = updatedDeck;
+        return true;
       }
+      return false;
     } catch (e) {
-      // TODO: Tratar o erro (ex: mostrar um snackbar)
+      errorMessage = 'Ocorreu um erro inesperado ao adicionar o card.';
+      return false;
     }
   }
 }

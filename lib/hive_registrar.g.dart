@@ -8,14 +8,14 @@ import 'package:app_flashcards/models/deck_card.model.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
-    registerAdapter(CardAdapter());
     registerAdapter(DeckAdapter());
+    registerAdapter(DeckCardAdapter());
   }
 }
 
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
-    registerAdapter(CardAdapter());
     registerAdapter(DeckAdapter());
+    registerAdapter(DeckCardAdapter());
   }
 }

@@ -40,7 +40,7 @@ class DeckHiveAdapter implements IDeckHiveAdapter {
 
     // Registra o adapter do modelo Card (typeId 1)
     if (!Hive.isAdapterRegistered(1)) {
-      Hive.registerAdapter(CardAdapter());
+      Hive.registerAdapter(DeckCardAdapter());
     }
 
     // Abre a caixa de decks
