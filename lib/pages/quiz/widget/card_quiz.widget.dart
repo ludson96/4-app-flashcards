@@ -52,31 +52,56 @@ class _CardQuizState extends State<CardQuiz> {
                 children: [
                   Column(
                     children: [
-                      Text(
-                        _showAnswer
-                            ? widget.deckCard.answer
-                            : widget.deckCard.question,
-                        style: const TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w500,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          widget.deckCard.question,
+                          style: const TextStyle(
+                            fontSize: 36,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
+                      if (_showAnswer) ...[
+                        const SizedBox(height: 20),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            widget.deckCard.answer,
+                            style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.grey[700],
+                              fontWeight: FontWeight.w400,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
                       const SizedBox(height: 20),
-                      TextButton(
+                      TextButton.icon(
                         onPressed: () {
                           setState(() {
                             _showAnswer = !_showAnswer;
                           });
                         },
-                        child: Text(
+                        icon: Icon(
                           _showAnswer
-                              ? "visualizar pergunta"
-                              : "visualizar resposta",
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
+                          size: 20,
+                        ),
+                        label: Text(
+                          _showAnswer
+                              ? "Esconder resposta"
+                              : "Visualizar resposta",
                           style: const TextStyle(
                             fontSize: 16,
-                            color: Colors.red,
+                            fontWeight: FontWeight.w600,
                           ),
+                        ),
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.blue,
                         ),
                       ),
                     ],

@@ -18,13 +18,25 @@ class EndQuizz extends StatelessWidget {
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 38, fontWeight: .w500),
             ),
-            const SizedBox(height: 20),
-            TextButton(
-              key: Key("btnVoltar"),
+            const SizedBox(height: 30),
+            FilledButton.icon(
+              key: const Key("btnVoltar"),
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text(
+              icon: const Icon(Icons.arrow_back, size: 20),
+              label: const Text(
                 'Voltar',
-                style: TextStyle(color: Colors.black, fontSize: 16),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              style: FilledButton.styleFrom(
+                backgroundColor: Colors.black,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 32,
+                  vertical: 14,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
             ),
           ],
