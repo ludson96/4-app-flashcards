@@ -1,5 +1,7 @@
 # App Flashcards 🗂️
 
+🇧🇷 Leia isto em [Português](README.md)
+
 A mobile application developed in Flutter to create and manage flashcard decks. Ideal for students and anyone looking to memorize information in a practical and efficient way.
 
 ## 📝 About the Project
