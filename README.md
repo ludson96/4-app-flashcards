@@ -2,23 +2,40 @@
 
 Um aplicativo móvel desenvolvido em Flutter para criar e gerenciar baralhos de flashcards. Ideal para estudantes e qualquer pessoa que queira memorizar informações de forma prática e eficiente.
 
+## 📝 Sobre o Projeto
+
+O **App Flashcards** foi desenvolvido como solução para o desafio de criação de uma aplicação de cartões de memória (flash cards). O aplicativo permite criar diferentes categorias de baralhos, gerenciar cartões de estudo e realizar questionários interativos para testar o aprendizado.
+
+## 🖼️ Tela (Preview)
+
+<img src="assets/images/flashcards.gif" alt="Demonstração do App" width="300"/>
+
 ## ✨ Funcionalidades
 
-- **Criar Decks:** Crie novos baralhos (decks) de estudo com títulos personalizados.
-- **Adicionar Cartões:** Adicione cartões com uma pergunta na frente e uma resposta no verso a qualquer um dos seus decks.
-- **Listagem Centralizada:** Visualize todos os seus decks em uma tela principal.
-- **Remover Decks:** Exclua decks que não são mais necessários.
+- **Estado Vazio (Empty State):** Página exibida quando o usuário não possui baralhos cadastrados, com atalho para criar o primeiro baralho.
+- **Listagem de Baralhos:** Lista os baralhos cadastrados exibindo o nome e a quantidade atualizada de cartões de cada um.
+- **Criação de Baralho:** Interface simples para cadastro de um novo baralho informando apenas o nome.
+- **Remoção de Baralho:** Exclusão do baralho ao manter o dedo pressionado em cima do item desejado (Long Press) ou arrastando para a esquerda (Dismissible).
+- **Detalhes do Baralho:** Exibe o nome do baralho, total de cartões, botão para adicionar novos cartões e botão para iniciar o Quiz.
+- **Cadastro de Cartão:** Permite adicionar cartões compostos por uma **pergunta** e uma **resposta**.
+- **Sincronização da Contagem:** A quantidade de cartões atualiza automaticamente na página de detalhes e na listagem principal após cadastros.
 - **Persistência Local:** Todos os seus decks e cartões são salvos diretamente no dispositivo, permitindo o uso offline.
+- **Fluxo do Quiz Interativo:**
+  - Exibe inicialmente a pergunta do cartão.
+  - Permite alternar a visualização entre pergunta e resposta.
+  - Botões para o usuário indicar se **Acertou** ou **Errou**.
+  - Indicador do progresso atual dos cartões (exemplo: `2/10`).
+  - Mensagem de encerramento ao final do quiz exibindo a quantidade total de pontos alcançados.
 
 ## 🛠️ Arquitetura e Tecnologias
 
 O projeto foi construído seguindo princípios de arquitetura limpa para garantir um código desacoplado, testável e de fácil manutenção.
 
-*   **Framework:** [Flutter](https://flutter.dev/)
-*   **Linguagem:** [Dart](https://dart.dev/)
-*   **Gerenciamento de Estado:** [MobX](https://mobx.pub/) - Para um gerenciamento de estado reativo e previsível.
-*   **Banco de Dados Local:** [Hive](https://hive.dev/) - Um banco de dados NoSQL chave-valor, leve e extremamente rápido.
-*   **Injeção de Dependência:** [get_it](https://pub.dev/packages/get_it) - Para desacoplar as camadas da aplicação.
+- [**Dart**](https://dart.dev/): Linguagem de programação utilizada pelo Flutter.
+- [**Flutter**](https://flutter.dev/): Framework para desenvolvimento de aplicações multiplataforma.
+- [**MobX**](https://mobx.pub/): Gerenciamento de estado reativo e previsível.
+- [**Hive_ce**](https://hive.dev/): Banco de dados NoSQL leve e extremamente rápido.
+- [**GetIt**](https://pub.dev/packages/get_it): Desacoplamento das camadas da aplicação.
 
 ### Estrutura das Camadas
 
@@ -47,17 +64,23 @@ graph TD
     B --o|Atualiza Observables| A;
 ```
 
-## 🚀 Como Executar
+## 🚀 Como Executar o Projeto
 
-1.  **Clone o repositório:**
-    ```sh
-    git clone <URL_DO_SEU_REPOSITORIO>
+Para rodar este projeto em sua máquina local, você precisará ter o Flutter instalado. Depois, siga os passos abaixo:
+
+1.  **Clone o repositório** (se estiver usando git):
+    ```bash
+    git clone https://github.com/ludson96/4-app-flashcards.git
+
+    cd 4-app-flashcards
     ```
-2.  **Instale as dependências:**
-    ```sh
+
+2.  **Instale as dependências** com o Flutter:
+    ```bash
     flutter pub get
     ```
-3.  **Execute o aplicativo:**
-    ```sh
+
+3.  **Execute o aplicativo**:
+    ```bash
     flutter run
     ```
