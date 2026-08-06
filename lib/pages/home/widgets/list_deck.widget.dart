@@ -56,37 +56,55 @@ class ListDeck extends StatelessWidget {
                   itemCount: homeStore.decks.length,
                   itemBuilder: (context, index) {
                     final deckItem = homeStore.decks[index];
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailsDeck(deck: deckItem),
-                          ),
-                        );
-                      },
-                      onLongPress: () {
-                        confirmRemoveDeck(context, deckItem);
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 40),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(color: Colors.black),
-                          ),
+                    return Dismissible(
+                      key: Key(deckItem.id),
+                      direction: DismissDirection.endToStart,
+                      background: Container(
+                        color: Colors.red,
+                        alignment: Alignment.centerRight,
+                        padding: const EdgeInsets.only(right: 20),
+                        child: const Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                          size: 28,
                         ),
-                        child: Column(
-                          children: [
-                            Text(
-                              deckItem.title,
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500,
-                              ),
+                      ),
+                      onDismissed: (direction) {
+                        homeStore.removeDeck(id: deckItem.id);
+                      },
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailsDeck(deck: deckItem),
                             ),
-                            SizedBox(height: 4),
-                            Text("${deckItem.cardList.length} cartões"),
-                          ],
+                          );
+                        },
+                        onLongPress: () {
+                          confirmRemoveDeck(context, deckItem);
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(vertical: 40),
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(color: Colors.black),
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                deckItem.title,
+                                style: const TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text("${deckItem.cardList.length} cartões"),
+                            ],
+                          ),
                         ),
                       ),
                     );
